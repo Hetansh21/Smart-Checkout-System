@@ -431,13 +431,11 @@ class SmartKiosk(QMainWindow):
         payment_status_layout.addWidget(self.progress_bar)
         self.right_panel_layout.addWidget(self.payment_status_widget)
 
-        self.pay_btn = QPushButton("Pay Now")
+        self.pay_btn = QPushButton("Checkout")
         self.pay_btn.setObjectName("payButton")
         self.pay_btn.clicked.connect(self.start_payment_flow)
         self.right_panel_layout.addWidget(self.pay_btn)
-        self.upi_btn = QPushButton("Show UPI QR")
-        self.upi_btn.clicked.connect(self.show_qr_fallback)
-        self.right_panel_layout.addWidget(self.upi_btn)
+        
         self.right_panel_layout.addStretch()
 
         admin_buttons = QHBoxLayout()
@@ -611,7 +609,7 @@ class SmartKiosk(QMainWindow):
         self.total_label.setText(f"Total: ₹{self.total:.2f} (incl. GST)")
         has_items = len(self.cart) > 0
         self.pay_btn.setEnabled(has_items)
-        self.upi_btn.setEnabled(has_items)
+        
 
     def create_quantity_widget(self, row, qty):
         qty_widget = QWidget()
